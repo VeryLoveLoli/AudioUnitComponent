@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "Print",
+        "repositoryURL": "https://gitee.com/cchsora/Print",
+        "state": {
+          "branch": "master",
+          "revision": "61726bb7ce88291df3d567217ee0a43e4e433d22",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
