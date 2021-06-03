@@ -96,7 +96,7 @@ open class AudioUnit {
         
         var asbd = asbd
         
-        let status = AudioUnitSetProperty(instance, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, 0, &asbd, UInt32(MemoryLayout.stride(ofValue: asbd)))
+        let status = AudioUnitSetProperty(instance, kAudioUnitProperty_StreamFormat, kAudioUnitScope_Output, bus, &asbd, UInt32(MemoryLayout.stride(ofValue: asbd)))
         
         Print.debug("kAudioUnitProperty_StreamFormat kAudioUnitScope_Output \(status)")
         
