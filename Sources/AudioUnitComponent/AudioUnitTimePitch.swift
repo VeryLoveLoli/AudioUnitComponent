@@ -77,7 +77,7 @@ open class AudioUnitTimePitch: AudioUnit {
      
      - parameter    value:      -2400 -> 2400, 1.0 `0:不变` `<0:低音调（男声）` `>0:高音调（女声）`
      */
-    func pitch(_ value: AudioUnitParameterValue, inBufferOffsetInFrames: UInt32 = 0) -> OSStatus {
+    open func pitch(_ value: AudioUnitParameterValue, inBufferOffsetInFrames: UInt32 = 0) -> OSStatus {
         
         return AudioUnitSetParameter(instance, kNewTimePitchParam_Pitch, kAudioUnitScope_Global, 0, value, inBufferOffsetInFrames)
     }
@@ -87,7 +87,7 @@ open class AudioUnitTimePitch: AudioUnit {
      
      - parameter    value:      1/32 -> 32.0, 1.0
      */
-    func rate(_ value: AudioUnitParameterValue, inBufferOffsetInFrames: UInt32 = 0) -> OSStatus {
+    open func rate(_ value: AudioUnitParameterValue, inBufferOffsetInFrames: UInt32 = 0) -> OSStatus {
         
         return AudioUnitSetParameter(instance, kNewTimePitchParam_Rate, kAudioUnitScope_Global, 0, value, inBufferOffsetInFrames)
     }
@@ -97,7 +97,7 @@ open class AudioUnitTimePitch: AudioUnit {
      
      - parameter    value:      3.0 -> 32.0, 8.0
      */
-    func overlap(_ value: AudioUnitParameterValue, inBufferOffsetInFrames: UInt32 = 0) -> OSStatus {
+    open func overlap(_ value: AudioUnitParameterValue, inBufferOffsetInFrames: UInt32 = 0) -> OSStatus {
         
         return AudioUnitSetParameter(instance, kNewTimePitchParam_Overlap, kAudioUnitScope_Global, 0, value, inBufferOffsetInFrames)
     }
@@ -107,7 +107,7 @@ open class AudioUnitTimePitch: AudioUnit {
      
      - parameter    value:      0->1, 1
      */
-    func enablePeakLocking(_ value: AudioUnitParameterValue, inBufferOffsetInFrames: UInt32 = 0) -> OSStatus {
+    open func enablePeakLocking(_ value: AudioUnitParameterValue, inBufferOffsetInFrames: UInt32 = 0) -> OSStatus {
         
         return AudioUnitSetParameter(instance, kNewTimePitchParam_EnablePeakLocking, kAudioUnitScope_Global, 0, value, inBufferOffsetInFrames)
     }
