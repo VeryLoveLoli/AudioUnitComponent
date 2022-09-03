@@ -26,8 +26,12 @@ open class AudioUnitPlayer: AudioUnitIO {
     public override init?(_ streamBasicDescription: AudioStreamBasicDescription, componentDescription: AudioComponentDescription = .remoteIO()) {
         
         super.init(streamBasicDescription, componentDescription: componentDescription)
-        
+                
         var status: OSStatus = noErr
+        
+        status = speaker()
+        
+        guard status == noErr else { return nil }
         
         /// 渲染输入
         var renderCallbackStruct = AURenderCallbackStruct(inputProc: { (raw, ioActionFlags, inTimeStamp, inOutputBusNumber, inNumberFrames, ioData) -> OSStatus in

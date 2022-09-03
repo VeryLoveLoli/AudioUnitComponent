@@ -31,6 +31,10 @@ open class AudioUnitRecorder: AudioUnitIO {
         
         var status: OSStatus = noErr
         
+        status = microphone()
+        
+        guard status == noErr else { return nil }
+        
         /// 回调函数
         var renderCallbackStruct = AURenderCallbackStruct(inputProc: { (raw, ioActionFlags, inTimeStamp, inOutputBusNumber, inNumberFrames, ioData) -> OSStatus in
             

@@ -20,14 +20,9 @@ open class AudioUnitIO: AudioUnit {
     public let element_1: UInt32 = 1
     
     /**
-     初始化
-     
-     - parameter    streamBasicDescription:     音频流参数
-     - parameter    componentDescription:       音频设备参数
+     开启麦克风
      */
-    public override init?(_ streamBasicDescription: AudioStreamBasicDescription, componentDescription: AudioComponentDescription = .remoteIO()) {
-        
-        super.init(streamBasicDescription, componentDescription: componentDescription)
+    open func microphone() -> OSStatus {
         
         var status: OSStatus = noErr
         
@@ -38,24 +33,32 @@ open class AudioUnitIO: AudioUnit {
         
         Print.debug("kAudioOutputUnitProperty_EnableIO kAudioUnitScope_Input \(status)")
         
-        guard status == noErr else { return nil }
+        guard status == noErr else { return status }
+        
+        /// 音频流输出 ---> 总线1
+        status = output(element_1, asbd: basic)
+        
+        return status
+    }
+    
+    /**
+     开启扬声器
+     */
+    open func speaker() -> OSStatus {
+        
+        var status: OSStatus = noErr
+        
+        var flag: UInt32 = 1
         
         /// 音频输出 ---> 总线0
         status = AudioUnitSetProperty(instance, kAudioOutputUnitProperty_EnableIO, kAudioUnitScope_Output, element_0, &flag, UInt32(MemoryLayout.stride(ofValue: flag)))
         
         Print.debug("kAudioOutputUnitProperty_EnableIO kAudioUnitScope_Output \(status)")
         
-        guard status == noErr else { return nil }
-        
         /// 音频流输入 ---> 总线0
         status = input(element_0, asbd: basic)
         
-        guard status == noErr else { return nil }
-        
-        /// 音频流输出 ---> 总线1
-        status = output(element_1, asbd: basic)
-        
-        guard status == noErr else { return nil }
+        return status
     }
     
     /**
